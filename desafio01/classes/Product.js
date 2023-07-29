@@ -7,6 +7,7 @@ class Product {
         this.thumbnail = thumbnail;
         this.code = code;
         this.stock = stock;
+        this.id = Product.getNewId();
     }
 
     /**
