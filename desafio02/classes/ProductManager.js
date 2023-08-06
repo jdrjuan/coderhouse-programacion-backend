@@ -1,6 +1,7 @@
 class ProductManager {
 
-    constructor () {
+    constructor (productsFilePath) {
+        this.path = productsFilePath;
         this.products = [];
     }
 

@@ -2,7 +2,9 @@ import Product from './classes/Product.js';
 import ProductManager from './classes/ProductManager.js';
 import config from './config.js';
 
-const ProdManager = new ProductManager();
+const PRODUCTS_FILE_PATH = config.PRODUCTS_FILE_PATH || './data/products.json';
+
+const ProdManager = new ProductManager(PRODUCTS_FILE_PATH);
 
 ProdManager.addProduct(new Product(
     'GoPro Hero 11 Black', 'Cámara de acción 4K.', 400, 'gopro11black.jpg', 'GP001', 20
