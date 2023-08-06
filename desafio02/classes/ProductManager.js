@@ -1,3 +1,4 @@
+import {promises as fs} from 'fs';
 class ProductManager {
 
     constructor (productsFilePath) {
@@ -52,6 +53,30 @@ class ProductManager {
             }
         }
         return true;
+    }
+
+    async #readProductsFile() {
+        try {
+            return await fs.readFile(this.path, 'utf8');
+        } catch (error) {
+            console.error(`\x1b[31mError:\x1b[0m Could not read file from ${this.path}`);
+            throw error;
+        }
+    }
+
+    async #getProductsArray() {
+        let productsArray = [];
+        try {
+            const parsedJSON = JSON.parse(await this.#readProductsFile());
+            if (!Array.isArray(parsedJSON)) {
+                throw new Error();
+            }
+            productsArray = parsedJSON;
+        } catch (error) {
+            console.error(`\x1b[31mError:\x1b[0m Could not parse array from ${this.path}`);
+            console.log('Creating empty array');
+        }
+        return productsArray;
     }
 
 }
