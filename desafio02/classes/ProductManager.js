@@ -28,20 +28,23 @@ class ProductManager {
 
     }
 
-    getProducts() {
-        return this.products;
+    async getProducts() {
+        const products = await this.#getProductsArray();
+        return products;
     }
 
-    getProductById(id) {
-        const product = this.products.find(product => product.id === id)
+    async getProductById(id) {
+        const products = await this.#getProductsArray();
+        const product = products.find(product => product.id === id)
         if (!product) {
             console.error('Not found');
         }
         return product;
     }
 
-    getProductByCode(code) {
-        const product = this.products.find(product => product.code === code)
+    async getProductByCode(code) {
+        const products = await this.#getProductsArray();
+        const product = products.find(product => product.code === code)
         return product;
     }
 
