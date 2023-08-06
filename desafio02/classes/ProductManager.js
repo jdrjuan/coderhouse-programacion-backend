@@ -3,7 +3,6 @@ class ProductManager {
 
     constructor (productsFilePath) {
         this.path = productsFilePath;
-        this.products = [];
     }
 
     addProduct(product) {
