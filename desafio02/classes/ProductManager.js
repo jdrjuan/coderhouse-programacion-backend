@@ -1,5 +1,8 @@
 class ProductManager {
-    static products = [];
+
+    constructor () {
+        this.products = [];
+    }
 
     addProduct(product) {
 
@@ -20,16 +23,16 @@ class ProductManager {
             return;
         }
 
-        ProductManager.products.push(product);
+        this.products.push(product);
 
     }
 
     getProducts() {
-        return ProductManager.products;
+        return this.products;
     }
 
     getProductById(id) {
-        const product = ProductManager.products.find(product => product.id === id)
+        const product = this.products.find(product => product.id === id)
         if (!product) {
             console.error('Not found');
         }
@@ -37,7 +40,7 @@ class ProductManager {
     }
 
     getProductByCode(code) {
-        const product = ProductManager.products.find(product => product.code === code)
+        const product = this.products.find(product => product.code === code)
         return product;
     }
 
