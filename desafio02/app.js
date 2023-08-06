@@ -1,5 +1,6 @@
 import Product from './classes/Product.js';
 import ProductManager from './classes/ProductManager.js';
+import config from './config.js';
 
 const ProdManager = new ProductManager();
 
