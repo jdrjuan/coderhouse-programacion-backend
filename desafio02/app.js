@@ -47,14 +47,3 @@ console.log(productManager.getProductByCode('GP001'));
 console.log('----- getProductByCode(\'XXX\') -----');
 console.log(productManager.getProductByCode('XXX'));
 
-
-const nombre1 = 'Beck';
-const nombre2 = 'Schneider';
-const nombre3 = 'Reed';
-const nombre4 = 'Gibson';
-const nombre5 = 'Goodman';
-const nombre6 = 'Davidson';
-const nombre7 = 'Salazar';
-const nombre8 = 'Simpson';
-const nombre9 = 'Shelton';
-const nombre10 = 'Taylor';
