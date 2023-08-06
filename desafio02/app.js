@@ -4,48 +4,48 @@ import config from './config.js';
 
 const PRODUCTS_FILE_PATH = config.PRODUCTS_FILE_PATH || './data/products.json';
 
-const ProdManager = new ProductManager(PRODUCTS_FILE_PATH);
+const productManager = new ProductManager(PRODUCTS_FILE_PATH);
 
-ProdManager.addProduct(new Product(
+productManager.addProduct(new Product(
     'GoPro Hero 11 Black', 'Cámara de acción 4K.', 400, 'gopro11black.jpg', 'GP001', 20
 ));
 
 // Same code
-ProdManager.addProduct(new Product(
+productManager.addProduct(new Product(
     'GoPro Hero 11 Black mini', 'Cámara de acción mini.', 360, 'gopro11mini.jpg', 'GP001', 15
 ));
 
 // description null
-ProdManager.addProduct(new Product(
+productManager.addProduct(new Product(
     'Nintendo Switch', undefined, 350, 'switch.jpg', 'NSW001', 50
 ));
 
-ProdManager.addProduct(new Product(
+productManager.addProduct(new Product(
     'Smartphone', 'Teléfono pantalla Full HD.', 800, 'smartphone.jpg', 'SPH002', 25
 ));
 
-ProdManager.addProduct(new Product(
+productManager.addProduct(new Product(
     'Laptop', 'Laptop ultradelgada Intel Core i7.', 1200, 'laptop.jpg', 'LT003', 15
 ));
 
-ProdManager.addProduct(new Product(
+productManager.addProduct(new Product(
     'Auriculares', 'Auriculares con cancelación.', 150, 'auriculares.jpg', 'AU004', 100
 ));
 
-console.table(ProdManager.getProducts());
+console.table(productManager.getProducts());
 
 
 console.log('----- getProductById(1) -----');
-console.log(ProdManager.getProductById(1));
+console.log(productManager.getProductById(1));
 
 console.log('----- getProductById(40) -----');
-console.log(ProdManager.getProductById(40));
+console.log(productManager.getProductById(40));
 
 console.log('----- getProductByCode(\'GP001\') -----');
-console.log(ProdManager.getProductByCode('GP001'));
+console.log(productManager.getProductByCode('GP001'));
 
 console.log('----- getProductByCode(\'XXX\') -----');
-console.log(ProdManager.getProductByCode('XXX'));
+console.log(productManager.getProductByCode('XXX'));
 
 
 const nombre1 = 'Beck';
