@@ -7,6 +7,7 @@ class ProductManager {
     }
 
     async addProduct(product) {
+        console.log(`Trying to add product with code ${product.code}`);
         
         try {
 
@@ -37,11 +38,13 @@ class ProductManager {
     }
 
     async getProducts() {
+        console.log(`Trying to get array with all products`);
         const products = await this.#getProductsArray();
         return products;
     }
 
     async getProductById(id) {
+        console.log(`Searching product with id ${id}`);
         const products = await this.#getProductsArray();
         const product = products.find(product => product.id === id)
         if (!product) {
@@ -51,6 +54,7 @@ class ProductManager {
     }
 
     async getProductByCode(code) {
+        console.log(`Searching product with code ${code}`);
         const products = await this.#getProductsArray();
         const product = products.find(product => product.code === code)
         return product;
@@ -66,6 +70,7 @@ class ProductManager {
     }
 
     async #readProductsFile() {
+        console.log(`Trying to read file with all products`);
         try {
             return await fs.readFile(this.path, 'utf8');
         } catch (error) {
