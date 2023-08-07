@@ -61,6 +61,27 @@ class ProductManager {
 
     }
 
+    async deleteProduct(id) {
+        console.log(`Trying to delete product with id ${id}`);
+        
+        try {
+
+            const products = await this.#getProductsArray();
+
+            const productIndex = products.findIndex(product => product.id === id);
+            if (!productIndex) {
+                throw new Error(`Product with id ${id} not found.`);
+            }
+
+            products.splice(productIndex, 1);
+
+            await this.#writeProductsFile(products)
+        } catch (error) {
+            console.error(`\x1b[31mError:\x1b[0m Product not deleted. ${error.message}`);
+        }
+
+    }
+
     getNextId (products) {
         let nextId = products.reduce((maxId, product) => {
             return product.id > maxId ? product.id : maxId;
