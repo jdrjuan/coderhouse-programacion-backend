@@ -30,6 +30,37 @@ class ProductManager {
 
     }
 
+    async updateProduct(id, product) {
+        console.log(`Trying to update product with code ${product.code}`);
+        
+        try {
+
+            if (!this.isProductComplete(product)) {
+                throw new Error('The product is not complete.');
+            }
+
+            if (await this.getProductByCode(product.code)) {
+                throw new Error(`A product with the same code has been found.`);
+            }
+
+            const products = await this.#getProductsArray();
+
+            const productIndex = products.findIndex(product => product.id === id);
+            if (!productIndex) {
+                throw new Error(`Product with id ${id} not found.`);
+            }
+
+            // id replacement is not allowed
+            product.id = id;
+            products[productIndex] = product;
+
+            await this.#writeProductsFile(products)
+        } catch (error) {
+            console.error(`\x1b[31mError:\x1b[0m Product not updated. ${error.message}`);
+        }
+
+    }
+
     getNextId (products) {
         let nextId = products.reduce((maxId, product) => {
             return product.id > maxId ? product.id : maxId;
