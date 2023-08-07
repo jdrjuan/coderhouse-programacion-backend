@@ -8,7 +8,10 @@
     "dev": "nodemon ."
   },
   "nodemonConfig": {
-    "ignore": ["data/*"]
+    "ignore": ["data/*"],
+    "events": {
+      "start": "clear || cls & echo ====================  START  ====================\n"
+    }
   },
   "keywords": [],
   "author": "Juan Romero",
