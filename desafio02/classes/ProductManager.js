@@ -25,10 +25,18 @@ class ProductManager {
         }
 
         const products = await this.#getProductsArray();
+        product.id = this.getNextId(products);
         products.push(product);
 
         await this.#writeProductsFile(products)
 
+    }
+
+    getNextId (products) {
+        let nextId = products.reduce((maxId, product) => {
+            return product.id > maxId ? product.id : maxId;
+        }, 0);
+        return nextId + 1;
     }
 
     async getProducts() {
