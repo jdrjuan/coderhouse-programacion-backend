@@ -28,7 +28,11 @@ class ProductManager {
         product.id = this.getNextId(products);
         products.push(product);
 
-        await this.#writeProductsFile(products)
+        try {
+            await this.#writeProductsFile(products)
+        } catch (error) {
+            console.error(`The product could not be added.`);
+        }
 
     }
 
