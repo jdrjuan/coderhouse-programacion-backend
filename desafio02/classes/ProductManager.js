@@ -7,32 +7,24 @@ class ProductManager {
     }
 
     async addProduct(product) {
-
-        let productIsOkForAdding = true;
-
-        if (!this.isProductComplete(product)) {
-            console.error('The product is not complete.');
-            productIsOkForAdding = false;
-        }
-
-        if (await this.getProductByCode(product.code)) {
-            console.error('A product with the same code has been found.');
-            productIsOkForAdding = false;
-        }
-
-        if (!productIsOkForAdding) {
-            console.error('The product could not be added.');
-            return;
-        }
-
-        const products = await this.#getProductsArray();
-        product.id = this.getNextId(products);
-        products.push(product);
-
+        
         try {
+
+            if (!this.isProductComplete(product)) {
+                throw new Error('The product is not complete.');
+            }
+
+            if (await this.getProductByCode(product.code)) {
+                throw new Error(`A product with the same code has been found.`);
+            }
+
+            const products = await this.#getProductsArray();
+            product.id = this.getNextId(products);
+            products.push(product);
+
             await this.#writeProductsFile(products)
         } catch (error) {
-            console.error(`The product could not be added.`);
+            console.error(`\x1b[31mError:\x1b[0m Product not added. ${error.message}`);
         }
 
     }
@@ -77,8 +69,7 @@ class ProductManager {
         try {
             return await fs.readFile(this.path, 'utf8');
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Could not read from file ${this.path}`);
-            throw error;
+            throw new Error(`Could not read from file ${this.path}`);
         }
     }
 
@@ -87,8 +78,7 @@ class ProductManager {
         try {
             return await fs.writeFile(this.path, productsString);
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Could not write to file ${this.path}`);
-            throw error;
+            throw new Error (`Could not write to file ${this.path}`);
         }
     }
 
