@@ -5,7 +5,7 @@ class ProductManager {
         this.path = productsFilePath;
     }
 
-    addProduct(product) {
+    async addProduct(product) {
 
         let productIsOkForAdding = true;
 
@@ -14,7 +14,7 @@ class ProductManager {
             productIsOkForAdding = false;
         }
 
-        if (this.getProductByCode(product.code)) {
+        if (await this.getProductByCode(product.code)) {
             console.error('A product with the same code has been found.');
             productIsOkForAdding = false;
         }
@@ -24,7 +24,10 @@ class ProductManager {
             return;
         }
 
-        this.products.push(product);
+        const products = await this.#getProductsArray();
+        products.push(product);
+
+        await this.#writeProductsFile(products)
 
     }
 
@@ -62,6 +65,16 @@ class ProductManager {
             return await fs.readFile(this.path, 'utf8');
         } catch (error) {
             console.error(`\x1b[31mError:\x1b[0m Could not read file from ${this.path}`);
+            throw error;
+        }
+    }
+
+    async #writeProductsFile(products) {
+        const productsString = JSON.stringify(products, null, '\t');
+        try {
+            return await fs.writeFile(this.path, productsString);
+        } catch (error) {
+            console.error(`\x1b[31mError:\x1b[0m Could not write file to ${this.path}`);
             throw error;
         }
     }
