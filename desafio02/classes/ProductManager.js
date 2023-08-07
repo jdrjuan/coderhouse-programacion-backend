@@ -3,6 +3,7 @@ class ProductManager {
 
     constructor (productsFilePath) {
         this.path = productsFilePath;
+        this.products = null;
     }
 
     async addProduct(product) {
@@ -92,18 +93,20 @@ class ProductManager {
     }
 
     async #getProductsArray() {
-        let productsArray = [];
+        if (this.products !== null) {
+            return this.products;
+        }
+        this.products = [];
         try {
             const parsedJSON = JSON.parse(await this.#readProductsFile());
             if (!Array.isArray(parsedJSON)) {
                 throw new Error();
             }
-            productsArray = parsedJSON;
+            this.products = parsedJSON;
         } catch (error) {
             console.error(`\x1b[31mError:\x1b[0m Could not parse array from ${this.path}`);
-            console.log('Creating empty array');
         }
-        return productsArray;
+        return this.products;
     }
 
 }
