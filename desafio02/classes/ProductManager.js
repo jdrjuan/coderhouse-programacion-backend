@@ -72,7 +72,7 @@ class ProductManager {
         try {
             return await fs.readFile(this.path, 'utf8');
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Could not read file from ${this.path}`);
+            console.error(`\x1b[31mError:\x1b[0m Could not read from file ${this.path}`);
             throw error;
         }
     }
@@ -82,7 +82,7 @@ class ProductManager {
         try {
             return await fs.writeFile(this.path, productsString);
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Could not write file to ${this.path}`);
+            console.error(`\x1b[31mError:\x1b[0m Could not write to file ${this.path}`);
             throw error;
         }
     }
