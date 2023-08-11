@@ -1,0 +1,22 @@
+{
+  "name": "desafio03",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Desafío 03 - Entregable - Servidor con express",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon ."
+  },
+  "nodemonConfig": {
+    "ignore": ["data/*"],
+    "events": {
+      "start": "clear || cls & echo ====================  START  ====================\n"
+    }
+  },
+  "keywords": [],
+  "author": "Juan Romero",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
