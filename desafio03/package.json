@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Desafío 03 - Entregable - Servidor con express",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
     "dev": "nodemon ."
   },
