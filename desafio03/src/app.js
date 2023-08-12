@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductManager from './classes/ProductManager.js';
+import ProductManager from './services/ProductManager.js';
 import config from './config.js';
 
 const PRODUCTS_FILE_PATH = config.PRODUCTS_FILE_PATH || './data/products.json';
