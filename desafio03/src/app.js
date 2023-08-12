@@ -10,6 +10,15 @@ const app = express();
 
 app.get('/products/', async (req, res) => {
     const products = await productManager.getProducts();
+    const {limit} = req.query;
+
+    // If limit string contains an integer value
+    if(/^\d+$/.test(limit)) {
+        const productsLimit = +limit;
+        const productsRange = products.slice(0, productsLimit);
+        return res.send(productsRange);
+    }
+    
     res.send(products);
 })
 
