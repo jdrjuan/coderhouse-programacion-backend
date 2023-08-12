@@ -25,5 +25,5 @@ app.get('/products/:pid', async (req, res) => {
     res.send(product);
 })
 
-const server = app.listen(3000, () => { console.log(`Servidor escuchando en puerto ${config.PORT}`)});
+const server = app.listen(config.PORT, () => { console.log(`Servidor escuchando en puerto ${config.PORT}`)});
 server.on('error', error => console.log('Error al iniciar el servidor:', error.message));
