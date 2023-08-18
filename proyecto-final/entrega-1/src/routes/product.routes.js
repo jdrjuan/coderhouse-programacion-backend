@@ -4,7 +4,7 @@ import config from '../config.js';
 
 const productRouter = Router();
 
-const PRODUCTS_FILE_PATH = config.PRODUCTS_FILE_PATH || './data/products.json';
+const PRODUCTS_FILE_PATH = config.PRODUCTS_FILE_PATH || './src/data/products.json';
 const productManager = new ProductManager(PRODUCTS_FILE_PATH);
 
 
