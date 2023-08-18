@@ -151,7 +151,7 @@ class ProductManager {
             }
             this.products = parsedJSON;
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Could not parse array from ${this.path}`);
+            // console.error(`\x1b[31mError:\x1b[0m Could not parse array from ${this.path}`);
         }
         return this.products;
     }
