@@ -6,5 +6,6 @@ const app = express();
 
 app.use('/products', productRouter);
 
-const server = app.listen(config.PORT, () => { console.log(`Servidor escuchando en puerto ${config.PORT}`)});
+const PORT = config.PORT || 8080;
+const server = app.listen(PORT, () => { console.log(`Servidor escuchando en puerto ${config.PORT}`)});
 server.on('error', error => console.log('Error al iniciar el servidor:', error.message));
