@@ -7,7 +7,7 @@ class ProductManager {
     }
 
     async addProduct(product) {
-        console.log(`Trying to add product with code ${product.code}`);
+        // console.log(`Trying to add product with code ${product.code}`);
         
         try {
 
@@ -25,13 +25,13 @@ class ProductManager {
 
             await this.#writeProductsFile(products)
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Product not added. ${error.message}`);
+            // console.error(`\x1b[31mError:\x1b[0m Product not added. ${error.message}`);
         }
 
     }
 
     async updateProduct(id, product) {
-        console.log(`Trying to update product with code ${product.code}`);
+        // console.log(`Trying to update product with code ${product.code}`);
         
         try {
 
@@ -56,13 +56,13 @@ class ProductManager {
 
             await this.#writeProductsFile(products)
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Product not updated. ${error.message}`);
+            // console.error(`\x1b[31mError:\x1b[0m Product not updated. ${error.message}`);
         }
 
     }
 
     async deleteProduct(id) {
-        console.log(`Trying to delete product with id ${id}`);
+        // console.log(`Trying to delete product with id ${id}`);
         
         try {
 
@@ -77,7 +77,7 @@ class ProductManager {
 
             await this.#writeProductsFile(products)
         } catch (error) {
-            console.error(`\x1b[31mError:\x1b[0m Product not deleted. ${error.message}`);
+            // console.error(`\x1b[31mError:\x1b[0m Product not deleted. ${error.message}`);
         }
 
     }
@@ -90,13 +90,13 @@ class ProductManager {
     }
 
     async getProducts() {
-        console.log(`Trying to get array with all products`);
+        // console.log(`Trying to get array with all products`);
         const products = await this.#getProductsArray();
         return products;
     }
 
     async getProductById(id) {
-        console.log(`Searching product with id ${id}`);
+        // console.log(`Searching product with id ${id}`);
         const products = await this.#getProductsArray();
         const product = products.find(product => product.id === id)
         if (!product) {
@@ -106,7 +106,7 @@ class ProductManager {
     }
 
     async getProductByCode(code) {
-        console.log(`Searching product with code ${code}`);
+        // console.log(`Searching product with code ${code}`);
         const products = await this.#getProductsArray();
         const product = products.find(product => product.code === code)
         return product;
@@ -122,7 +122,7 @@ class ProductManager {
     }
 
     async #readProductsFile() {
-        console.log(`Trying to read file with all products`);
+        // console.log(`Trying to read file with all products`);
         try {
             return await fs.readFile(this.path, 'utf8');
         } catch (error) {
