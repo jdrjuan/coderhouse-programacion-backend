@@ -34,6 +34,21 @@ productRouter.get('/:pid', async (req, res) => {
     res.send(product);
 })
 
+productRouter.post('/', async (req, res) => {
+    console.log(`___________${new Date().toLocaleString()}___________`);
+    
+    const product = new Product(req.body);
+
+    try {
+        const newProduct = await productManager.addProduct(product);
+        console.log(newProduct);
+        res.json(newProduct);
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).json({error: 'Could not create product', details: error.message});
+    }
+    
+});
 
 productRouter.delete('/:pid', async (req, res) => {
     const {pid} = req.params;
