@@ -10,22 +10,24 @@ class ProductManager {
         // console.log(`Trying to add product with code ${product.code}`);
         
         try {
+            const products = await this.#getProductsArray();
+            product.id = this.getNextId(products);
 
-            if (!this.isProductComplete(product)) {
-                throw new Error('The product is not complete.');
-            }
+            Product.areAllPropertiesValid(product);
+
 
             if (await this.getProductByCode(product.code)) {
                 throw new Error(`A product with the same code has been found.`);
             }
 
-            const products = await this.#getProductsArray();
-            product.id = this.getNextId(products);
             products.push(product);
 
-            await this.#writeProductsFile(products)
+            await this.#writeProductsFile(products);
+
+            return product;
         } catch (error) {
             // console.error(`\x1b[31mError:\x1b[0m Product not added. ${error.message}`);
+            throw new Error(error);
         }
 
     }
