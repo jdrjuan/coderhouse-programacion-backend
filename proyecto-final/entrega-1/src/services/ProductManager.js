@@ -69,15 +69,19 @@ class ProductManager {
             const products = await this.#getProductsArray();
 
             const productIndex = products.findIndex(product => product.id === id);
-            if (!productIndex) {
-                throw new Error(`Product with id ${id} not found.`);
+            if (productIndex === -1) {
+                return null;
             }
 
+            const deletedProduct = products[productIndex];
             products.splice(productIndex, 1);
 
-            await this.#writeProductsFile(products)
+            await this.#writeProductsFile(products);
+
+            return deletedProduct;
         } catch (error) {
             // console.error(`\x1b[31mError:\x1b[0m Product not deleted. ${error.message}`);
+            throw new Error(error);
         }
 
     }

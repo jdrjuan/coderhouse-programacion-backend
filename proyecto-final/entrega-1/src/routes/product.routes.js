@@ -35,4 +35,23 @@ productRouter.get('/:pid', async (req, res) => {
 })
 
 
+productRouter.delete('/:pid', async (req, res) => {
+    const {pid} = req.params;
+
+    let deletedProduct;
+
+    try {
+        deletedProduct = await productManager.deleteProduct(parseInt(pid));
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).send({error: 'Could not delete product', details: 'An error was found while trying to delete the product.'});
+    }
+
+    if (!deletedProduct) {
+        return res.status(404).send({error: 'Could not delete product', details: 'The product could not be found.'});
+    }
+
+    res.send(deletedProduct);
+})
+
 export default productRouter;
