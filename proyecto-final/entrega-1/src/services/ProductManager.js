@@ -1,4 +1,5 @@
 import {promises as fs} from 'fs';
+import Product from '../models/Product.js';
 class ProductManager {
 
     constructor (productsFilePath) {
