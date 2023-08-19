@@ -5,7 +5,8 @@
   "description": "Proyecto Final - Entrega 1",
   "main": "./src/app.js",
   "scripts": {
-    "dev": "nodemon ./src/app.js"
+    "dev": "nodemon ./src/app.js",
+    "debug": "nodemon --inspect ./src/app.js"
   },
   "nodemonConfig": {
     "ignore": ["data/*"],
