@@ -1,0 +1,25 @@
+{
+  "name": "desafio04",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Desafío 04 - Entregable - Websockets",
+  "main": "./src/app.js",
+  "scripts": {
+    "dev": "nodemon ."
+  },
+  "nodemonConfig": {
+    "ignore": ["data/*"],
+    "events": {
+      "start": "clear || cls & echo ====================  START  ====================\n"
+    }
+  },
+  "keywords": [],
+  "author": "Juan Romero",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
